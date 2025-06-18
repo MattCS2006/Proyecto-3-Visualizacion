@@ -1,0 +1,1 @@
+#aqui va Conteo de emociones en grafica de barras
