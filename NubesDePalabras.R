@@ -1,1 +1,114 @@
-#Aquí va la visualización de Nubes de Palabras
+if (!require("ggwordcloud")) {install.packages("ggwordcloud")}
+if (!require("tidytext")) {install.packages("tidytext")}
+if (!require("dplyr")) {install.packages("dplyr")}
+if (!require("stringr")) {install.packages("stringr")}
+library("ggwordcloud")
+library("tidytext")
+library("dplyr")
+library("stringr")
+
+tryCatch({
+  texto_completo <- readLines("El pozo y el péndulo.txt", encoding = "UTF-8")
+}, error = function(e) {
+  message("No se pudo leer el archivo 'El pozo y el péndulo.txt'.")
+  message("Asegúrate de que el archivo exista en el directorio de trabajo actual o proporciona la ruta completa.")
+  message("Error original: ", e$message)
+  stop("Ejecución detenida debido a la falta del archivo de texto.")
+})
+
+# Une todas las líneas en un solo string
+texto_unido <- paste(texto_completo, collapse = " ")
+
+# Limpia el texto: conviértelo a minúsculas, elimina números y puntuación
+texto_limpio <- tolower(texto_unido)
+texto_limpio <- str_replace_all(texto_limpio, "[0-9]", "") # Eliminar números
+texto_limpio <- str_replace_all(texto_limpio, "[[:punct:]]", "") # Eliminar puntuación
+texto_limpio <- str_replace_all(texto_limpio, "…", "") # Eliminar elipsis que no son puntuación estándar
+
+# 2. Tokenización y limpieza de palabras
+# Crea un dataframe con el texto
+datos_texto <- tibble(texto = texto_limpio)
+
+# Tokeniza el texto en palabras individuales
+datos_palabras <- datos_texto %>%
+  unnest_tokens(palabra, texto)
+
+# Carga las 'stop words' en español de tidytext
+data("stop_words")
+spanish_stop_words <- stop_words %>%
+  filter(lexicon == "snowball") %>%
+  select(word)
+
+# Define una lista extendida de palabras a excluir manualmente.
+# Incluye pronombres, verbos comunes, conectores y palabras genéricas que
+# no aportan significado temático relevante, basándonos en tu lista.
+palabras_a_excluir_extendida <- c(
+  "cuanto",
+  "como", "soy", "solo", "puede", "ser", "mas", "más", "bien", "así", "esto",
+  "muy", "tan", "uno", "todo", "mis", "sus", "cada", "algún", "había", "habían",
+  "dijo", "hacer", "hacía", "sido", "estar", "estaba", "estaban", "sentía", "era",
+  "eran", "tiempo", "luego", "ahora", "vez", "siempre",
+  "poco", "mucho", "casi", "cuando", "donde", "mientras", "parte", "cosas",
+  "mismo", "misma", "suficiente", "después", "durante", "aunque", "hasta",
+  "sin", "ni", "hacia", "sobre", "entre", "entre", "cual", "cuales", "aquella",
+  "aquel", "aquellas", "aquellos", "esa", "ese", "esas", "esos", "ella", "ello",
+  "ellos", "ellas", "él", "me", "te", "se", "nos", "os", "le", "les", "lo", "la",
+  "los", "las", "mi", "tu", "su", "nuestro", "vuestro", "sus", "mis", "tus", "sus",
+  "nuestros", "vuestros", "vuestras", "cierto", "cierta", "ciertos", "ciertas",
+  "demás", "otro", "otra", "otros", "otras", "fueron", "había", "puedo", "poder",
+  "debe", "deber", "podía", "pudiera", "hubiera", "quería", "parecía", "tenía", "tenían",
+  "hecho", "hacerlo", "saber", "decir", "ir", "volver", "quedar", "ver", "oír",
+  "gran", "grande", "pequeño", "pequeña", "primero", "segundo", "tercero", "cuarto",
+  "final", "último", "principio", "medio", "punto", "línea", "lado", "manera",
+  "modo", "claro", "oscuro", "difícil", "fácil", "real", "verdad", "falso", "posible",
+  "imposible", "diferente", "igual", "propio", "propia"
+)
+
+
+# Filtra las 'stop words' y las palabras irrelevantes adicionales
+datos_finales <- datos_palabras %>%
+  anti_join(spanish_stop_words, by = c("palabra" = "word")) %>%
+  filter(!palabra %in% palabras_a_excluir_extendida) %>% # Usa la lista extendida
+  filter(nchar(palabra) > 2) %>% # Filtra palabras muy cortas (de 2 caracteres o menos)
+  count(palabra, name = "frecuencia") %>%
+  arrange(desc(frecuencia)) # Ordena por frecuencia para ver las más comunes
+
+# Opcional: Imprime las 50 palabras más frecuentes después de la limpieza
+# Esto es ÚTIL para seguir ajustando tu lista de 'palabras_a_excluir_extendida'
+# Si ves palabras que aún son irrelevantes, agrégalas a esa lista.
+print("Las 50 palabras más frecuentes después de la limpieza:")
+print(head(datos_finales, 50))
+
+
+# --- Creación de la nube de palabras ---
+
+# Limita el número de palabras a mostrar para evitar una nube demasiado densa.
+# Puedes ajustar este número (ej. 50, 75, 100) para encontrar el equilibrio.
+num_palabras_a_mostrar <- 60
+datos_para_nube <- head(datos_finales, num_palabras_a_mostrar)
+
+ggplot(datos_para_nube, aes(
+  label = palabra,
+  size = frecuencia,
+  color = frecuencia
+)) +
+  geom_text_wordcloud(
+    shape = "circle",
+    rm_outside = TRUE,
+    fontface = "bold",
+    eccentricity = 0.5
+  ) +
+  scale_size_area(max_size = 20) + # Aumenta ligeramente el tamaño máximo para mayor visibilidad
+  scale_color_gradient(
+    low = "#2166ac", # Azul oscuro
+    high = "#b2182b" # Rojo intenso
+  ) +
+  theme_void() +
+  labs(
+    title = "Nube de Palabras: 'El pozo y el péndulo' de Edgar Allan Poe",
+    subtitle = paste0("Las ", num_palabras_a_mostrar, " palabras clave más frecuentes")
+  ) +
+  theme(
+    plot.title = element_text(hjust = 0.5, face = "bold", size = 18),
+    plot.subtitle = element_text(hjust = 0.5, size = 12, margin = margin(b = 10))
+  )
