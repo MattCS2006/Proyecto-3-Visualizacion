@@ -7,14 +7,7 @@ library("tidytext")
 library("dplyr")
 library("stringr")
 
-tryCatch({
-  texto_completo <- readLines("El pozo y el péndulo.txt", encoding = "UTF-8")
-}, error = function(e) {
-  message("No se pudo leer el archivo 'El pozo y el péndulo.txt'.")
-  message("Asegúrate de que el archivo exista en el directorio de trabajo actual o proporciona la ruta completa.")
-  message("Error original: ", e$message)
-  stop("Ejecución detenida debido a la falta del archivo de texto.")
-})
+texto_completo <- readLines("El pozo y el péndulo.txt", encoding = "UTF-8")
 
 # Une todas las líneas en un solo string
 texto_unido <- paste(texto_completo, collapse = " ")
@@ -25,11 +18,8 @@ texto_limpio <- str_replace_all(texto_limpio, "[0-9]", "") # Eliminar números
 texto_limpio <- str_replace_all(texto_limpio, "[[:punct:]]", "") # Eliminar puntuación
 texto_limpio <- str_replace_all(texto_limpio, "…", "") # Eliminar elipsis que no son puntuación estándar
 
-# 2. Tokenización y limpieza de palabras
-# Crea un dataframe con el texto
 datos_texto <- tibble(texto = texto_limpio)
 
-# Tokeniza el texto en palabras individuales
 datos_palabras <- datos_texto %>%
   unnest_tokens(palabra, texto)
 
@@ -61,30 +51,18 @@ palabras_a_excluir_extendida <- c(
   "gran", "grande", "pequeño", "pequeña", "primero", "segundo", "tercero", "cuarto",
   "final", "último", "principio", "medio", "punto", "línea", "lado", "manera",
   "modo", "claro", "oscuro", "difícil", "fácil", "real", "verdad", "falso", "posible",
-  "imposible", "diferente", "igual", "propio", "propia"
+  "imposible", "diferente", "igual", "propio", "propia", "que", "del", "por", "una", "con", "pero", "para", "fue", "nada", "antes", "paso", "menos", "todas", "dos", "haber", "qué", "fin", "pues", "entonces", "acababa", "completamente", "esta", "eso", "algo"
 )
-
 
 # Filtra las 'stop words' y las palabras irrelevantes adicionales
 datos_finales <- datos_palabras %>%
-  anti_join(spanish_stop_words, by = c("palabra" = "word")) %>%
   filter(!palabra %in% palabras_a_excluir_extendida) %>% # Usa la lista extendida
-  filter(nchar(palabra) > 2) %>% # Filtra palabras muy cortas (de 2 caracteres o menos)
+  filter(nchar(palabra) > 3) %>% # Filtra palabras muy cortas (de 3 caracteres o menos)
   count(palabra, name = "frecuencia") %>%
   arrange(desc(frecuencia)) # Ordena por frecuencia para ver las más comunes
 
-# Opcional: Imprime las 50 palabras más frecuentes después de la limpieza
-# Esto es ÚTIL para seguir ajustando tu lista de 'palabras_a_excluir_extendida'
-# Si ves palabras que aún son irrelevantes, agrégalas a esa lista.
-print("Las 50 palabras más frecuentes después de la limpieza:")
-print(head(datos_finales, 50))
-
-
-# --- Creación de la nube de palabras ---
-
 # Limita el número de palabras a mostrar para evitar una nube demasiado densa.
-# Puedes ajustar este número (ej. 50, 75, 100) para encontrar el equilibrio.
-num_palabras_a_mostrar <- 60
+num_palabras_a_mostrar <- 100
 datos_para_nube <- head(datos_finales, num_palabras_a_mostrar)
 
 ggplot(datos_para_nube, aes(
@@ -98,7 +76,7 @@ ggplot(datos_para_nube, aes(
     fontface = "bold",
     eccentricity = 0.5
   ) +
-  scale_size_area(max_size = 20) + # Aumenta ligeramente el tamaño máximo para mayor visibilidad
+  scale_size_area(max_size = 15) + # Aumenta ligeramente el tamaño máximo para mayor visibilidad
   scale_color_gradient(
     low = "#2166ac", # Azul oscuro
     high = "#b2182b" # Rojo intenso
@@ -112,3 +90,4 @@ ggplot(datos_para_nube, aes(
     plot.title = element_text(hjust = 0.5, face = "bold", size = 18),
     plot.subtitle = element_text(hjust = 0.5, size = 12, margin = margin(b = 10))
   )
+
