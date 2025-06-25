@@ -1,5 +1,5 @@
 ---
-title: "Análisis del Cuento "El pozo y el péndulo"
+title: "Análisis del Cuento El pozo y el péndulo"
 author: "Mathew Cordero e Ian Ugalde"
 date: "2025-06-18"
 output: html_document
@@ -9,22 +9,70 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## R Markdown
+## Introducción
 
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+Este análisis explora las emociones en el cuento **"El pozo y el péndulo"** de Edgar Allan Poe, utilizando herramientas de R para procesamiento de texto y visualización. Se incluyen análisis de polaridad, nubes de palabras, conteo de emociones, el arco emocional del texto y una red semántica de palabras.
 
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
+## Análisis de Polaridad
 
-```{r cars}
-summary(cars)
+```{r grafo, echo=FALSE, message=FALSE, warning=FALSE}
+Polaridad <- source("AnalisisDePolaridad.R", local = TRUE)$value
+Polaridad
 ```
 
-## Including Plots
+**Interpretación:**\
 
-You can also embed plots, for example:
+El gráfico muestra cómo varía la polaridad emocional a lo largo del texto. Predomina la carga negativa, consistente con la ambientación tensa, de desesperación y sufrimiento que caracteriza la obra de Poe.
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+## Nube de Palabras
+
+```{r Nube, echo=FALSE, message=FALSE, warning=FALSE}
+Nube <- source("NubesDePalabras.R", local = TRUE)$value
+Nube
 ```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+**Interpretación:**\
+
+Las palabras más frecuentes giran en torno a temas como la muerte, la oscuridad y el encierro. Esto refuerza el foco narrativo en el sufrimiento psicológico del protagonista.
+
+## Conteo de Emociones
+
+```{r Conteo, echo=FALSE, message=FALSE, warning=FALSE}
+Conteo1 <- source("ConteoDeEmociones.R", local = TRUE)$value
+Conteo1
+```
+
+**Interpretación:**\
+
+El análisis revela un predominio claro de *miedo* y *tristeza*. Emociones positivas como la *alegría* o *confianza* están casi ausentes, lo que refuerza la atmósfera de desesperanza que domina el cuento.
+
+## Arco Emocional
+
+```{r Arco, echo=FALSE, message=FALSE, warning=FALSE}
+Arco <- source("ArcoEmocional.R", local = TRUE)$value
+Arco
+```
+
+**Interpretación:**\
+El arco presenta oscilaciones intensas que reflejan el estado emocional cambiante del protagonista, atrapado entre momentos fugaces de esperanza y una constante sensación de peligro.
+
+## Red de Palabras
+
+```{r Red, echo=FALSE, message=FALSE, warning=FALSE}
+Red <- source("RedDePalabras.R", local = TRUE)$value
+Red
+```
+
+**Interpretación:**\
+
+La red muestra las 30 palabras más influyentes y sus co-ocurrencias. Se observan núcleos léxicos asociados a la tortura, el encierro y el miedo. El diseño filtrado mejora la legibilidad y permite identificar conexiones clave en el lenguaje utilizado.
+
+## Conclusiones
+
+El análisis evidencia cómo Edgar Allan Poe construye una narrativa cargada emocionalmente, con predominancia de emociones negativas. Las visualizaciones refuerzan la idea de un texto psicológicamente denso, con una estructura narrativa que lleva al lector por un camino oscuro y opresivo.
+
+**Hecho por:**
+
+-   Ian Ugalde.
+
+-   Matthew Cordero.
