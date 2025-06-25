@@ -67,3 +67,5 @@ plot(g,
      layout = layout,
      main = "Red de Palabras (Top 30) - El pozo y el péndulo",
      vertex.label.family = "sans")
+
+invisible(g)

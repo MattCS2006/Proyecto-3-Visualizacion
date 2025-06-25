@@ -13,63 +13,71 @@ knitr::opts_chunk$set(echo = TRUE)
 
 Este análisis explora las emociones en el cuento **"El pozo y el péndulo"** de Edgar Allan Poe, utilizando herramientas de R para procesamiento de texto y visualización. Se incluyen análisis de polaridad, nubes de palabras, conteo de emociones, el arco emocional del texto y una red semántica de palabras.
 
+La emociones son una parte sumamente importante a la hora de analizar una obra literaria, herramientas como las utilizadas permiten que una persona lectora pueda analizar y sacar sus propias conclusiones de lo que trata el texto. Como se menciona en muchos libros no solo es poder identificar cuales emociones estan presentes, si no que también poder reconocer como estas influyen en generar otras en los lectores.
+
 ## Análisis de Polaridad
 
 ```{r grafo, echo=FALSE, message=FALSE, warning=FALSE}
 Polaridad <- source("AnalisisDePolaridad.R", local = TRUE)$value
-Polaridad
+
 ```
 
 **Interpretación:**\
 
-El gráfico muestra cómo varía la polaridad emocional a lo largo del texto. Predomina la carga negativa, consistente con la ambientación tensa, de desesperación y sufrimiento que caracteriza la obra de Poe.
+El gráfico de polaridad muestra una predominancia de *cargas negativas* a lo largo del relato, con picos que refuerzan la tensión emocional. Esto es coherente con la estructura narrativa de Poe, que guía al lector a través de un descenso constante hacia la desesperación. Al igual que en otros trabajos literarios del mismo Poe donde se identifican *fluctuaciones emocionales* que sostienen la tensión narrativa, manipula la polaridad para crear un ambiente de angustia ininterrumpida. En este caso, sin embargo, la polaridad rara vez se alivia, lo que intensifica la *claustrofobia emocional y física del protagonista*.
 
 ## Nube de Palabras
 
 ```{r Nube, echo=FALSE, message=FALSE, warning=FALSE}
 Nube <- source("NubesDePalabras.R", local = TRUE)$value
-Nube
+
 ```
 
 **Interpretación:**\
 
-Las palabras más frecuentes giran en torno a temas como la muerte, la oscuridad y el encierro. Esto refuerza el foco narrativo en el sufrimiento psicológico del protagonista.
+La nube de palabras revela un léxico centrado en la angustia: términos como *oscuridad, muerte, paredes, péndulo, foso*, destacan como núcleos semánticos del horror. Tal como se encontró en Cervantes, donde palabras como *esperanza*, *nervios* y *pena* emergen como anclas emocionales del relato, en Poe se manifiesta una coherencia temática basada en el *sufrimiento y el miedo físico*. Esto indica no solo un tema, sino una estrategia lingüística deliberada: crear inmersión emocional a través de un vocabulario cargado afectivamente generando *intriga y carga emocional* en el lector.
 
 ## Conteo de Emociones
 
 ```{r Conteo, echo=FALSE, message=FALSE, warning=FALSE}
 Conteo1 <- source("ConteoDeEmociones.R", local = TRUE)$value
-Conteo1
+
 ```
 
 **Interpretación:**\
 
-El análisis revela un predominio claro de *miedo* y *tristeza*. Emociones positivas como la *alegría* o *confianza* están casi ausentes, lo que refuerza la atmósfera de desesperanza que domina el cuento.
+El análisis revela un predominio claro de *miedo* y *tristeza*. Emociones positivas como la *alegría* o *confianza* y sorpresa están casi ausentes, lo que refuerza la atmósfera de desesperanza que domina el cuento. En un análisis mucho más profundo podemos ejercer un juicio sin siquiera leer de lo que puede tratar el texto, o por lo menos del ambiente emocional que va a desarrollar, no es solo analizar cuales emociones están presentes, sino la alta cantidad de Edgar Allan Poe utiliza estas emociones en el transcurso del texto.
 
 ## Arco Emocional
 
 ```{r Arco, echo=FALSE, message=FALSE, warning=FALSE}
 Arco <- source("ArcoEmocional.R", local = TRUE)$value
-Arco
+
 ```
 
 **Interpretación:**\
-El arco presenta oscilaciones intensas que reflejan el estado emocional cambiante del protagonista, atrapado entre momentos fugaces de esperanza y una constante sensación de peligro.
+Se identifican una curva positiva al inicio, al medio y al cierre, Poe estructura en este breve segmento de su obra, una intensidad poco variable en su inicio, sin tanto rango de crecimiento y decrecimiento, pero después de la mitad vemos una oscilacion casi como parabola, donde su punto más bajo es casi a 3/4 del segmento y crece de nuevo hasta el final de este.
+
+Estas variaciones (Como momentos en los que el protagonista cree encontrar una salida) nunca se consolidan como esperanza real, sino que funcionan como refuerzo para el contraste emocional, todo esto genera que el texto en sí mantenga atrapado a su audiencia, ya que una obra donde no presenta oscilaciones genera una falta de interes, por lo cuál el escritor toma como recurso utilizar estas intensidades emocionales.
 
 ## Red de Palabras
 
 ```{r Red, echo=FALSE, message=FALSE, warning=FALSE}
 Red <- source("RedDePalabras.R", local = TRUE)$value
-Red
+
 ```
 
 **Interpretación:**\
 
 La red muestra las 30 palabras más influyentes y sus co-ocurrencias. Se observan núcleos léxicos asociados a la tortura, el encierro y el miedo. El diseño filtrado mejora la legibilidad y permite identificar conexiones clave en el lenguaje utilizado.
 
+En el texto se puede ver como Poe utiliza mucho patrones a la hora de construir sus oraciones, podemos analizar que se encuentran muchos adverbios de tiempo y frecuencia, y los relaciona con el lugar, incluso esto se puede interpretar con la misma tensión que el mismo quiere transmitir en el texto.
+
 ## Conclusiones
 
 El análisis evidencia cómo Edgar Allan Poe construye una narrativa cargada emocionalmente, con predominancia de emociones negativas. Las visualizaciones refuerzan la idea de un texto psicológicamente denso, con una estructura narrativa que lleva al lector por un camino oscuro y opresivo.
+
+Para un lector fanático de este tipo de ambientes narrativos; análisis como estos, donde se emplean este tipo de herramientas le permiten elegir mucho más fácil su próxima aventura literaria. E incluso le puede ser muy útil a personas cuya profesión o pasatiempo va de mano con el análisis de obras literarias.
 
 **Hecho por:**
 

@@ -15,7 +15,7 @@ if (!require("ggplot2")) {
 #el archivo "El pozo y el péndulo.txt" en la misma carpeta del script
 texto <- tolower(readLines("El pozo y el péndulo.txt", encoding = "UTF-8"))
 texto <- paste(texto, collapse = " ")
-print(texto)
+
 
 #Obtener oraciones y calcular las emociones
 oraciones <- get_sentences(texto)

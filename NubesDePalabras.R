@@ -64,7 +64,7 @@ datos_finales <- datos_palabras %>%
 # Limita el número de palabras a mostrar para evitar una nube demasiado densa.
 num_palabras_a_mostrar <- 100
 datos_para_nube <- head(datos_finales, num_palabras_a_mostrar)
-
+print(
 ggplot(datos_para_nube, aes(
   label = palabra,
   size = frecuencia,
@@ -91,3 +91,4 @@ ggplot(datos_para_nube, aes(
     plot.subtitle = element_text(hjust = 0.5, size = 12, margin = margin(b = 10))
   )
 
+)
