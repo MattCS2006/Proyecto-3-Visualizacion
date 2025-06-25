@@ -1,5 +1,4 @@
-#Red de Palabras
-# Instalar y cargar paquetes necesarios
+# --- Paquetes necesarios ---
 if (!require("tm")) install.packages("tm")
 if (!require("igraph")) install.packages("igraph")
 if (!require("SnowballC")) install.packages("SnowballC")
@@ -10,14 +9,11 @@ library(igraph)
 library(SnowballC)
 library(tokenizers)
 
-# 1. Leer y unificar el texto del archivo
+# --- Leer y procesar texto ---
 texto <- tolower(readLines("El pozo y el péndulo.txt", encoding = "UTF-8"))
 texto <- paste(texto, collapse = " ")
-
-# 2. Dividir el texto en oraciones
 oraciones <- unlist(tokenize_sentences(texto))
 
-# 3. Función para procesar el texto
 procesar_texto <- function(texto) {
   corpus <- VCorpus(VectorSource(texto))
   corpus <- tm_map(corpus, content_transformer(tolower))
@@ -31,44 +27,43 @@ procesar_texto <- function(texto) {
 
 corpus_procesado <- procesar_texto(oraciones)
 
-# 4. Crear la matriz de co-ocurrencias
 crear_matriz_coocurrencias <- function(corpus) {
   tdm <- TermDocumentMatrix(corpus)
-  tdm <- as.matrix(tdm)
-  tdm <- tdm %*% t(tdm)
-  diag(tdm) <- 0
-  return(tdm)
+  m <- as.matrix(tdm)
+  m <- m %*% t(m)
+  diag(m) <- 0
+  return(m)
 }
 
-matriz_coocurrencias <- crear_matriz_coocurrencias(corpus_procesado)
+matriz <- crear_matriz_coocurrencias(corpus_procesado)
 
-# 5. Visualizar red de palabras
-visualizar_red_palabras <- function(matriz, titulo = "Red de palabras") {
-  g <- graph.adjacency(matriz, weighted = TRUE, mode = "undirected")
-  g <- simplify(g)
-  E(g)$weight <- ifelse(E(g)$weight < 1, 0, E(g)$weight)
-  g <- delete_edges(g, E(g)[weight == 0])
-  
-  V(g)$label <- V(g)$name
-  V(g)$degree <- degree(g)
-  V(g)$label.color <- "darkblue"
-  V(g)$frame.color <- NA
-  V(g)$color <- rgb(0.7, 0.8, 1, alpha = 0.8)
-  
-  E(g)$width <- 0.8 * E(g)$weight / max(E(g)$weight) + 0.5
-  E(g)$color <- "gray70"
-  
-  set.seed(123)
-  layout <- layout_with_fr(g)
-  
-  par(mar = c(0, 0, 2, 0))
-  plot(g,
-       layout = layout,
-       main = titulo,
-       vertex.label.dist = 1.3,
-       vertex.label.cex = 0.8)
-}
+# --- Limitar a las 30 palabras más conectadas ---
+top_palabras <- sort(rowSums(matriz), decreasing = TRUE)[1:30]
+matriz_reducida <- matriz[names(top_palabras), names(top_palabras)]
 
-# 6. Ejecutar análisis y mostrar la red
-visualizar_red_palabras(matriz_coocurrencias, "Red de palabras en 'El pozo y el péndulo'")
+# --- Crear grafo ---
+g <- graph.adjacency(matriz_reducida, mode = "undirected", weighted = TRUE, diag = FALSE)
+g <- simplify(g)
 
+# --- Ajustar visual ---
+V(g)$label <- V(g)$name
+V(g)$degree <- degree(g)
+V(g)$size <- 6 + V(g)$degree
+V(g)$label.cex <- 0.9
+V(g)$color <- "#81C784"
+V(g)$frame.color <- NA
+V(g)$label.color <- "black"
+
+E(g)$width <- 1 + E(g)$weight / max(E(g)$weight) * 2
+E(g)$color <- "gray70"
+
+# --- Layout más espacioso ---
+set.seed(42)
+layout <- layout_with_kk(g)
+
+# --- Graficar ---
+par(mar = c(0, 0, 2, 0))
+plot(g,
+     layout = layout,
+     main = "Red de Palabras (Top 30) - El pozo y el péndulo",
+     vertex.label.family = "sans")
