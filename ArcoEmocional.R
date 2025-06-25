@@ -1,5 +1,3 @@
-#Aquí va el Arco emocional
-
 if (require("rstudioapi", quietly = TRUE)) {
   setwd(dirname(rstudioapi::getActiveDocumentContext()$path))
 }
