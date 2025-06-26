@@ -75,9 +75,19 @@ En el texto se puede ver como Poe utiliza mucho patrones a la hora de construir 
 
 ## Conclusiones
 
-El análisis evidencia cómo Edgar Allan Poe construye una narrativa cargada emocionalmente, con predominancia de emociones negativas. Las visualizaciones refuerzan la idea de un texto psicológicamente denso, con una estructura narrativa que lleva al lector por un camino oscuro y opresivo.
+El análisis emocional de *El pozo y el péndulo* mediante herramientas visuales y lingüísticas nos permite apreciar con mayor profundidad cómo Edgar Allan Poe construye una atmósfera densa, oscura y emocionalmente cargada. Cada gráfico contribuye a entender de forma distinta —y complementaria— la intensidad psicológica del cuento.
 
-Para un lector fanático de este tipo de ambientes narrativos; análisis como estos, donde se emplean este tipo de herramientas le permiten elegir mucho más fácil su próxima aventura literaria. E incluso le puede ser muy útil a personas cuya profesión o pasatiempo va de mano con el análisis de obras literarias.
+El **gráfico de polaridad** deja clara una tendencia hacia emociones negativas, con apenas momentos de alivio. Esta estructura de cargas emocionales descendentes intensifica la claustrofobia del relato, y nos demuestra cómo Poe manipula la narrativa para mantener al lector en un estado de tensión constante.
+
+La **nube de palabras** refuerza este ambiente sombrío al destacar términos como *oscuridad*, *péndulo*, *muerte* y *paredes*. Este vocabulario cargado emocionalmente no solo define el tono, sino que funciona como un recurso narrativo para mantener al lector atrapado en un universo de desesperanza.
+
+El **conteo de emociones** confirma lo anterior: predominan el miedo y la tristeza, con prácticamente ninguna emoción positiva presente. Esta distribución emocional no solo describe el tono del cuento, sino que también nos permite inferir el impacto psicológico que Poe buscaba generar en su audiencia.
+
+El **arco emocional** muestra una narrativa con altibajos mínimos al inicio, pero con una caída emocional pronunciada hacia las tres cuartas partes del relato. Esa falsa ilusión de esperanza seguida de un descenso refuerza el sentimiento de angustia, y demuestra cómo las oscilaciones emocionales bien calculadas son clave para sostener la atención del lector.
+
+Por último, la **red semántica** nos revela cómo Poe entrelaza palabras clave que giran en torno a la tortura, el encierro y el miedo. También deja ver patrones gramaticales como el uso recurrente de adverbios temporales que acentúan la desesperación progresiva, y que sirven como señales estructurales dentro del texto.
+
+En conjunto, estas visualizaciones permiten analizar con mayor precisión la complejidad emocional de la obra. No se trata solo de qué emociones están presentes, sino de cómo se distribuyen, se relacionan y evolucionan a lo largo del texto. Esta metodología no solo es útil para lectores apasionados por el análisis literario, sino también para escritores, estudiantes y profesionales que buscan entender cómo funciona la emoción dentro de la narrativa. Análisis como este abren la puerta a una lectura más consciente, crítica y emocionalmente conectada.
 
 **Hecho por:**
 
