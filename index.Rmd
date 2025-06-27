@@ -15,6 +15,32 @@ Este análisis explora las emociones en el cuento **"El pozo y el péndulo"** de
 
 La emociones son una parte sumamente importante a la hora de analizar una obra literaria, herramientas como las utilizadas permiten que una persona lectora pueda analizar y sacar sus propias conclusiones de lo que trata el texto. Como se menciona en muchos libros no solo es poder identificar cuales emociones estan presentes, si no que también poder reconocer como estas influyen en generar otras en los lectores.
 
+## Descripción del Problema
+
+A pesar del reconocido impacto emocional de los cuentos de Poe, el análisis literario tradicional no siempre ha sistematizado cómo se construyen estas emociones a nivel lingüístico. El objetivo de este estudio es detectar, medir y visualizar la carga emocional en el cuento a través de técnicas de sentiment analysis, para confirmar la hipótesis de que Poe construye su relato con predominancia emocional negativa y con fluctuaciones que sostienen la tensión narrativa.
+
+## Metodología empleada
+
+Se utilizó un enfoque basado en análisis de sentimientos con herramientas computacionales en R, desarrollado específicamente en R Studio. Este análisis se dividió en seis procedimientos:
+
+***Preprocesamiento del texto***: limpieza, tokenización y lematización del texto de Poe.
+
+***Análisis de polaridad***: clasificación de oraciones o fragmentos según su carga emocional positiva o negativa.
+
+***Generación de nube de palabras***: para identificar términos emocionalmente cargados.
+
+***Conteo de emociones***: mediante lexicones emocionales categorizados (miedo, tristeza, ira, alegría, etc.).
+
+***Arco emocional y red semántica***: representación gráfica de la evolución emocional y las co-ocurrencias entre palabras clave.
+
+**Generación de conclusiones**: A partir de los gráficos, de sus tendencias y de sus patrones, se postulan diferentes conclusiones.
+
+***Las herramientas empleadas:***
+
+**R** y **RStudio** - Paquetes: - [`ggwordcloud`](https://cran.r-project.org/web/packages/ggwordcloud/index.html) - [`syuzhet`](https://cran.r-project.org/web/packages/syuzhet/index.html) - [`tm`](https://cran.r-project.org/web/packages/tm/index.html) - [`igraph`](https://igraph.org/r/)
+
+# Resultados
+
 ## Análisis de Polaridad
 
 ```{r grafo, echo=FALSE, message=FALSE, warning=FALSE}
@@ -73,7 +99,13 @@ La red muestra las 30 palabras más influyentes y sus co-ocurrencias. Se observa
 
 En el texto se puede ver como Poe utiliza mucho patrones a la hora de construir sus oraciones, podemos analizar que se encuentran muchos adverbios de tiempo y frecuencia, y los relaciona con el lugar, incluso esto se puede interpretar con la misma tensión que el mismo quiere transmitir en el texto.
 
-## Conclusiones
+# Análisis de Resultados
+
+Los resultados obtenidos concuerdan con lo planteado por (Rodrigo-Ruiz & Literaria, 2022) sobre la narrativa cervantina: al igual que Cervantes, Poe también estructura sus relatos emocionalmente, pero en sentido opuesto. Mientras Cervantes oscila entre las emociones, Poe mantiene una negatividad persistente en este texto. Este patrón refuerza la idea de que el lector no necesita compartir la emoción que está viviendo el personaje, sino solo vivir el ritmo emocional del relato que se leyendo o que se transmite.
+
+Poe, a diferencia de otros autores, reduce casi completamente las emociones positivas, lo que convierte su narrativa en una experiencia emocionalmente intensa, cargada de desesperanza. La progresión descendente, seguida de breves ilusiones, genera un efecto de *claustrofobia emocional*, particularmente efectivo en relatos de horror.
+
+# Conclusiones
 
 El análisis emocional de *El pozo y el péndulo* mediante herramientas visuales y lingüísticas nos permite apreciar con mayor profundidad cómo Edgar Allan Poe construye una atmósfera densa, oscura y emocionalmente cargada. Cada gráfico contribuye a entender de forma distinta —y complementaria— la intensidad psicológica del cuento.
 
@@ -89,7 +121,11 @@ Por último, la **red semántica** nos revela cómo Poe entrelaza palabras clave
 
 En conjunto, estas visualizaciones permiten analizar con mayor precisión la complejidad emocional de la obra. No se trata solo de qué emociones están presentes, sino de cómo se distribuyen, se relacionan y evolucionan a lo largo del texto. Esta metodología no solo es útil para lectores apasionados por el análisis literario, sino también para escritores, estudiantes y profesionales que buscan entender cómo funciona la emoción dentro de la narrativa. Análisis como este abren la puerta a una lectura más consciente, crítica y emocionalmente conectada.
 
-**Hecho por:**
+# Referencias:
+
+Rodrigo-Ruiz, D., & Literaria, C. (2022). Las emociones en el texto literario. Un análisis digital de la narrativa cervantina. *Káñina, 46*(1), 117. 10.15517/rk.v46i1.50702
+
+### **Hecho por:**
 
 -   Ian Ugalde.
 
