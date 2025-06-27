@@ -35,7 +35,7 @@ Nube <- source("NubesDePalabras.R", local = TRUE)$value
 
 **Interpretación:**\
 
-La nube de palabras revela un léxico centrado en la angustia: términos como *oscuridad, muerte, paredes, péndulo, foso*, destacan como núcleos semánticos del horror. Tal como se encontró en Cervantes, donde palabras como *esperanza*, *nervios* y *pena* emergen como anclas emocionales del relato, en Poe se manifiesta una coherencia temática basada en el *sufrimiento y el miedo físico*. Esto indica no solo un tema, sino una estrategia lingüística deliberada: crear inmersión emocional a través de un vocabulario cargado afectivamente generando *intriga y carga emocional* en el lector.
+La nube de palabras revela un léxico centrado en la angustia: términos como *oscuridad, muerte, paredes, péndulo, foso*, destacan como núcleos semánticos del horror. Tal como se encontró en Cervantes (refiriendose a la técnica narrativa Cervantina), donde palabras como *esperanza*, *nervios* y *pena* emergen como anclas emocionales del relato, en Poe se manifiesta una coherencia temática basada en el *sufrimiento y el miedo físico*. Esto indica no solo un tema, sino una estrategia lingüística deliberada: crear inmersión emocional a través de un vocabulario cargado afectivamente generando *intriga y carga emocional* en el lector.
 
 ## Conteo de Emociones
 
@@ -81,7 +81,7 @@ El **gráfico de polaridad** deja clara una tendencia hacia emociones negativas,
 
 La **nube de palabras** refuerza este ambiente sombrío al destacar términos como *oscuridad*, *péndulo*, *muerte* y *paredes*. Este vocabulario cargado emocionalmente no solo define el tono, sino que funciona como un recurso narrativo para mantener al lector atrapado en un universo de desesperanza.
 
-El **conteo de emociones** confirma lo anterior: predominan el miedo y la tristeza, con prácticamente ninguna emoción positiva presente. Esta distribución emocional no solo describe el tono del cuento, sino que también nos permite inferir el impacto psicológico que Poe buscaba generar en su audiencia.
+El **conteo de emociones** confirma lo anterior: predominan el miedo y la tristeza, con pocas emociones positivas presentes. Esta distribución emocional no solo describe el tono del cuento, sino que también nos permite inferir el impacto psicológico que Poe buscaba generar en su audiencia.
 
 El **arco emocional** muestra una narrativa con altibajos mínimos al inicio, pero con una caída emocional pronunciada hacia las tres cuartas partes del relato. Esa falsa ilusión de esperanza seguida de un descenso refuerza el sentimiento de angustia, y demuestra cómo las oscilaciones emocionales bien calculadas son clave para sostener la atención del lector.
 
